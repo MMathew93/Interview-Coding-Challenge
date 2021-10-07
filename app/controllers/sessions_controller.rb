@@ -1,9 +1,9 @@
-class SessionsController < ApplicationController
-  def home
-  end
+# frozen_string_literal: true
 
-  def login
-  end
+class SessionsController < ApplicationController
+  def home; end
+
+  def login; end
 
   def create
     user = User.find_by(email: params[:email])

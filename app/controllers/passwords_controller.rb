@@ -1,10 +1,10 @@
+# frozen_string_literal: true
+
 class PasswordsController < ApplicationController
-  #allows only logged in users
+  # allows only logged in users
   before_action :require_user_logged_in!
 
-  def edit
-
-  end
+  def edit; end
 
   def update
     # update the user password
@@ -17,7 +17,7 @@ class PasswordsController < ApplicationController
 
   private
 
-    def password_params
-      params.require(:user).permit(:password, :password_confirmation)
-    end
+  def password_params
+    params.require(:user).permit(:password, :password_confirmation)
+  end
 end

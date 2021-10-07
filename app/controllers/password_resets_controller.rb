@@ -4,6 +4,15 @@ class PasswordResetsController
 
   end
 
+  def create
+    @user = User.find_by(email: params[:email])
+    if @user.present?
+      # send email
+      PasswordMailer.with(user: @user).reset.deliver_later
+    end
+    redirect_to root_path, notice: 'Please check your email to reset your password.'
+  end
+
   def edit
     #finds user with a valid token
     @user = User.find_signed!(params[:token], purpose: 'password_reset')

@@ -1,0 +1,5 @@
+Hi <%= params[:user].username %>
+Someone requested a password reset.
+Click the link above if you recognize the activity, the link will expire within the next 15 minutes.
+If you did not request a password reset, please ignore this request.
+<%= password_reset_editor_url(token: @token) %>

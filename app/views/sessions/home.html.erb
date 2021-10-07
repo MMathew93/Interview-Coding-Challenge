@@ -1,1 +1,9 @@
 <h1>RAILS AUTHENTICATION</h1>
+<% if Current.user %>
+  Logged in as: <%= Current.user.username %><br>
+  <%= button_to 'Edit Password', edit_password_path, method: :get %>
+  <%= button_to 'Logout', logout_path, method: :delete %>
+<% else %>
+  <%= button_to 'Sign Up', signup_path, method: :get %>
+  <%= button_to 'Login', login_path, method: :get %>
+<% end %>

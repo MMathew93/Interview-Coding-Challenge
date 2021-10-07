@@ -1,0 +1,7 @@
+<h1>USER DASHBOARD</h1>
+
+Logged in as: <%= Current.user.username %><br>
+<% @notes.each do |note| %>
+  <%= note.title %>
+  <%= note.body %>
+<% end %>

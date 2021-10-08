@@ -1,7 +1,15 @@
+<% if Current.user %>
 <h1>USER DASHBOARD</h1>
-
-Logged in as: <%= Current.user.username %><br>
-<% @notes.each do |note| %>
-  <%= note.title %>
-  <%= note.body %>
+  <%= button_to 'Edit Password', edit_password_path, method: :get %>
+  <%= button_to 'Logout', logout_path, method: :delete %>
+  <%= button_to 'Create Note', new_note_path(user_id: Current.user.id), method: :get %>
+  Logged in as: <%= Current.user.username %><br>
+  <% @notes.each do |note| %>
+    <%= note.title.presence || truncate(note.body, length: 30) %>
+    <%= note.body %>
+    <%= button_to 'Update', edit_note_path(note.id), method: :get %>
+    <%= button_to 'Delete', note_path(note.id), method: :delete %>
+  <% end %>
+<% else %>
+  <h1> YOUR NOT SUPPOSED TO BE HERE, GO TO THE HOMEPAGE</h1>
 <% end %>

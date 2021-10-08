@@ -1,7 +1,7 @@
 <% if Current.user %>
 <h1>USER DASHBOARD</h1>
-  <%= button_to 'Edit Password', edit_password_path, method: :get %>
-  <%= button_to 'Logout', logout_path, method: :delete %>
+  <%= button_to 'Edit Password', edit_password_path(Current.user.id), method: :get %>
+  <%= button_to 'Logout', session_path, method: :delete %>
   <%= button_to '+New Note', new_note_path(user_id: Current.user.id), method: :get %>
   Logged in as: <%= Current.user.username %><br>
   <% @notes.each do |note| %>

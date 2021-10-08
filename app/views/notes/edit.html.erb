@@ -2,4 +2,4 @@
 
 <%= render 'form', note: @note %>
 
-<%= link_to 'Cancel', user_notes_path(Current.user.id) %>
+<%= link_to 'Cancel', session_path(Current.user.id) %>

@@ -14,7 +14,7 @@ class NotesController < ApplicationController
   def create
     @note = Note.new(note_params)
     if @note.save
-      redirect_to user_notes_path(Current.user.id), notice: "Note was successfully created."
+      redirect_to session_path(Current.user.id), notice: "Note was successfully created."
     else
       flash.now[:alert] = 'Invalid email or password'
       render :new
@@ -24,7 +24,7 @@ class NotesController < ApplicationController
   # PATCH/PUT /notes/1
   def update
     if @note.update(note_params)
-      redirect_to user_notes_path(Current.user.id), notice: "Note was successfully updated."
+      redirect_to session_path(Current.user.id), notice: "Note was successfully updated."
     else
       render :edit, status: :unprocessable_entity
     end
@@ -33,7 +33,7 @@ class NotesController < ApplicationController
   # DELETE /notes/1
   def destroy
     @note.destroy
-    redirect_to user_notes_path(Current.user.id), notice: "Note was successfully destroyed."
+    redirect_to session_path(Current.user.id), notice: "Note was successfully destroyed."
   end
 
   private

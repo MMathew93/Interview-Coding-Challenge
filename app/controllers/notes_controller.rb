@@ -1,10 +1,6 @@
 class NotesController < ApplicationController
   before_action :set_note, only: %i[ show edit update destroy ]
 
-  # GET /notes/1 or /notes/1.json
-  def show
-  end
-
   # GET /notes/new
   def new
     @note = Note.new

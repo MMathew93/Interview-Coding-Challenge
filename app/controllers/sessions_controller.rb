@@ -3,9 +3,9 @@
 class SessionsController < ApplicationController
   def home; end
 
-  def login; end
+  def index; end
 
-  def dashboard
+  def show
     # gets all of the users notes
     @user = User.find(params[:id])
     @notes = @user.notes
@@ -17,10 +17,10 @@ class SessionsController < ApplicationController
     if user.present? && user.authenticate(params[:password])
       # set up a user.id session
       session[:user_id] = user.id
-      redirect_to user_notes_path(user.id), notice: 'Logged in successfully'
+      redirect_to session_path(user.id), notice: 'Logged in successfully'
     else
       flash.now[:alert] = 'Invalid email or password'
-      render :login
+      render :index
     end
   end
 

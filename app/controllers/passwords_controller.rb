@@ -9,7 +9,7 @@ class PasswordsController < ApplicationController
   def update
     # update the user password
     if Current.user.update(password_params)
-      redirect_to root_path, notice: 'Password Updated'
+      redirect_to session_path(Current.user.id), notice: 'Password Updated'
     else
       render :edit
     end

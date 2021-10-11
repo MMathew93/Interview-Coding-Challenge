@@ -44,10 +44,10 @@
                 </div>
               </div>
               <div class="is-size-7	">
-                <p>
+                <p class="user-time">
                   (Created by
                   <%= Current.user.username %>,
-                  <%= note.created_at.strftime("%a %I:%M%P") %>)
+                  <%= local_time(note.created_at, "%a %I:%M%P") %>)
                 </p>
               </div>
             </article>

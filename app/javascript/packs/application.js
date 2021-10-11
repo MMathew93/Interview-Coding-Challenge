@@ -3,7 +3,6 @@
 // a relevant structure within app/javascript and only use these pack files to reference
 // that code so it'll be compiled.
 
-
 import Rails from "@rails/ujs"
 import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
@@ -13,4 +12,6 @@ import LocalTime from 'local-time';
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+LocalTime.start()
+require("packs/myscript.js")
 LocalTime.start();

@@ -22,14 +22,14 @@
         <div class="field">
           <%= f.label :title, class:"label" %>
           <div class="control">
-            <%= f.text_area :title, class:"input" %>
+            <%= f.text_area :title, class:"input", maxlength: 30 %>
           </div>
         </div>
 
         <div class="field">
           <%= f.label :body, class:"label" %>
           <div class="control">
-            <%= f.text_area :body, class:"textarea", placeholder: "e.g. Hello world" %>
+            <%= f.text_area :body, class:"textarea", placeholder: "e.g. Hello world", maxlength: 1000 %>
           </div>
         </div>
 

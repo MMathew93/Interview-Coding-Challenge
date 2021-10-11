@@ -16,7 +16,6 @@ class NotesController < ApplicationController
     if @note.save
       redirect_to session_path(Current.user.id), notice: "Note was successfully created."
     else
-      flash.now[:alert] = 'Invalid email or password'
       render :new
     end
   end
@@ -33,7 +32,7 @@ class NotesController < ApplicationController
   # DELETE /notes/1
   def destroy
     @note.destroy
-    redirect_to session_path(Current.user.id), notice: "Note was successfully destroyed."
+    redirect_to session_path(Current.user.id), notice: "Note was successfully deleted."
   end
 
   private

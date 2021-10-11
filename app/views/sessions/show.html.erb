@@ -20,12 +20,11 @@
     </p>
     
   </div>
-
 <div class="container mt-5">
   <div class="columns is-multiline is-1">
     <% @notes.each do |note| %>
     <div class="column is-4 mt-3">
-      <div class="container note-container">
+      <div class="container note_container">
         <div class="tile is-ancestor">
           <div class="tile is-parent parent-note">
             <article class="tile is-child box note">
@@ -53,6 +52,20 @@
             </article>
           </div>
         </div>
+      </div>
+      <div class="modal">
+        <div class="modal-background"></div>
+          <div class="modal-content">
+            <article class="tile is-child box modal-note">
+              <p class="title is-4 note-title">
+                <%= note.title.presence || truncate(note.body, length: 30) %>
+              </p>
+              <div class="content modal-note-content">
+                <%= note.body %>
+              </div>
+            </article>
+          </div>
+        <button class="modal-close is-large" aria-label="close"></button>
       </div>
     </div>
     <% end %>

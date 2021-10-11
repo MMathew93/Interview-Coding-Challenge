@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class SessionsController < ApplicationController
+
   def home; end
 
   def index; end
@@ -9,6 +10,11 @@ class SessionsController < ApplicationController
     # gets all of the users notes
     @user = User.find(params[:id])
     @notes = @user.notes
+    unless session[:user_id] == @user.id
+      flash[:alert] = "You don't have access to that account!"
+      redirect_to session_path(session[:user_id])
+      return
+    end
   end
 
   def create
@@ -27,6 +33,7 @@ class SessionsController < ApplicationController
   def destroy
     # delete the user session and log out
     session[:user_id] = nil
-    redirect_to root_path, notice: 'Logged Out'
+    redirect_to root_path
   end
+
 end

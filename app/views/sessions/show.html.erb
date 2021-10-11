@@ -1,15 +1,61 @@
 <% if Current.user %>
-<h1>USER DASHBOARD</h1>
-  <%= button_to 'Edit Password', edit_password_path(Current.user.id), method: :get %>
-  <%= button_to 'Logout', session_path, method: :delete %>
-  <%= button_to '+New Note', new_note_path(user_id: Current.user.id), method: :get %>
-  Logged in as: <%= Current.user.username %><br>
-  <% @notes.each do |note| %>
-    <%= note.title.presence || truncate(note.body, length: 30) %>
-    <%= note.body %>
-    <%= button_to 'Edit', edit_note_path(note.id), method: :get %>
-    <%= button_to 'Delete', note_path(note.id), method: :delete %>
-  <% end %>
-<% else %>
-  <h1> YOUR NOT SUPPOSED TO BE HERE, GO TO THE HOMEPAGE</h1>
+<%= render "sessions/header" %>
+<% if alert %>
+  <div class="alert notification is-danger">
+    <button class="delete"></button>
+    <%= alert %>
+  </div>
+<% elsif notice %>
+  <div class="alert notification is-success">
+    <button class="delete"></button>
+    <%= notice %>
+  </div>
+<% end %>
+  <div class="is-size-5	has-text-right has-text-weight-semibold	pt-1 pr-6">
+      Welcome, <%= Current.user.username %>!
+  </div>
+  <div class="field is-grouped is-grouped-centered">
+    <p class="control">
+      <%= link_to '+New Note', new_note_path(user_id: Current.user.id), class:"button is-info has-text-weight-bold" %>
+    </p>
+    
+  </div>
+
+<div class="container mt-5">
+  <div class="columns is-multiline is-1">
+    <% @notes.each do |note| %>
+    <div class="column is-4 mt-3">
+      <div class="container">
+        <div class="tile is-ancestor">
+          <div class="tile is-parent parent-note">
+            <article class="tile is-child box note">
+              <p class="title is-4 note-title">
+                <%= note.title.presence || truncate(note.body, length: 30) %>
+              </p>
+              <div class="content note-content">
+                <%= truncate(note.body, length: 85) %>
+              </div>
+              <div class="field is-grouped is-grouped-right">
+                <div class="control">
+                  <%= link_to 'Edit', edit_note_path(note.id), class:"button is-link is-small" %>
+                </div>
+                <div class="control">
+                  <%= button_to 'Delete', note_path(note.id), class:"button is-link is-light is-small has-text-weight-semibold", method: :delete %>
+                </div>
+              </div>
+              <div class="is-size-7	">
+                <p>
+                  (Created by
+                  <%= Current.user.username %>,
+                  <%= note.created_at.strftime("%a %I:%M%P") %>)
+                </p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>
 <% end %>

@@ -13,3 +13,22 @@
  *= require_tree .
  *= require_self
  */
+
+ .note {
+   height: 16rem;
+   width: 100%;
+ }
+
+ .parent-note {
+   width: 100%;
+ }
+
+ .note-title {
+  height: 3rem;
+  overflow-wrap: break-word;
+ }
+
+ .note-content {
+  height: 4.5rem;
+  overflow-wrap: break-word;
+ }

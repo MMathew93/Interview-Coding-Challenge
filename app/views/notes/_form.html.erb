@@ -1,29 +1,49 @@
-<%= form_with(model: note) do |form| %>
-  <% if note.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(note.errors.count, "error") %> prohibited this note from being saved:</h2>
-
-      <ul>
-        <% note.errors.each do |error| %>
-          <li><%= error.full_message %></li>
+<div class="tile is-ancestor mt-6">
+  <div class="tile"></div>
+  <div class="tile is-7">
+    <div class="tile is-parent">
+      <article class="tile is-child notification is-info">
+        <p class="title">Note</p>
+        <%= form_with(model: note) do |f| %>
+        <% if note.errors.any? %>
+        <div id="error_explanation" class="notification is-danger">
+          <h2>
+            <%= pluralize(note.errors.count, "error") %>
+            prohibited this note from being saved:
+          </h2>
+          <ul>
+            <% note.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+            <% end %>
+          </ul>
+        </div>
         <% end %>
-      </ul>
+        <%= f.hidden_field :user_id, value: Current.user.id %>
+        <div class="field">
+          <%= f.label :title, class:"label" %>
+          <div class="control">
+            <%= f.text_area :title, class:"input" %>
+          </div>
+        </div>
+
+        <div class="field">
+          <%= f.label :body, class:"label" %>
+          <div class="control">
+            <%= f.text_area :body, class:"textarea", placeholder: "e.g. Hello world" %>
+          </div>
+        </div>
+
+        <div class="field is-grouped is-grouped-centered mt-5">
+          <div class="actions control">
+            <%= f.submit 'Submit', class:"button is-link" %>
+          </div>
+          <div class="control">
+            <%= link_to 'Back', session_path(Current.user.id), class:"button is-link is-light" %>
+          </div>
+        </div>
+        <% end %>
+      </article>
     </div>
-  <% end %>
-
-  <%= form.hidden_field :user_id, value: Current.user.id %>
-
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_area :title %>
   </div>
-
-  <div class="field">
-    <%= form.label :body %>
-    <%= form.text_area :body %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+  <div class="tile"></div>
+</div>

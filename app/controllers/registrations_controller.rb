@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 class RegistrationsController < ApplicationController
+
+  def index; end
+
   def new
     @user = User.new
   end
@@ -12,6 +15,7 @@ class RegistrationsController < ApplicationController
       session[:user_id] = @user.id
       redirect_to root_path, notice: 'Successfully created account'
     else
+      flash.now[:alert] = 'Please fill out the form completely and try again.'
       render :new
     end
   end

@@ -1,3 +1,14 @@
+<% if alert %>
+  <div class="alert notification is-danger">
+    <button class="delete"></button>
+    <%= alert %>
+  </div>
+<% elsif notice %>
+  <div class="alert notification is-success">
+    <button class="delete"></button>
+    <%= notice %>
+  </div>
+<% end %>
 <div class="tile is-ancestor mt-6">
   <div class="tile"></div>
   <div class="tile is-7">
@@ -8,46 +19,44 @@
         <div class="field">
           <%= f.label 'Email', class:"label" %>
           <div class="control has-icons-left has-icons-right">
-            <%= f.text_field :email,type:"email", class:"input is-danger", placeholder:"Email input", value:"hello@" %>
+            <%= f.text_field :email,type:"email", class:"input", placeholder:"Email input", value:"hello@" %>
             <span class="icon is-small is-left">
               <i class="fas fa-envelope"></i>
             </span>
-            <span class="icon is-small is-right">
-              <i class="fas fa-exclamation-triangle"></i>
-            </span>
           </div>
-          <p class="help is-danger">This email is invalid</p>
         </div>
 
         <div class="field">
           <%= f.label 'Username', class:"label" %>
           <div class="control has-icons-left has-icons-right">
-            <%= f.text_field :username, class:"input is-success" %>
+            <%= f.text_field :username, class:"input" %>
             <span class="icon is-small is-left">
               <i class="fas fa-user"></i>
             </span>
-            <span class="icon is-small is-right">
-              <i class="fas fa-check"></i>
-            </span>
           </div>
-          <p class="help is-success">This username is available</p>
         </div>
 
         <div class="field">
           <%= f.label 'Password', class:"label" %>
-          <div class="control">
+          <div class="control has-icons-left has-icons-right">
             <%= f.password_field :password, class:"input" %>
+            <span class="icon is-small is-left">
+              <i class="fas fa-unlock-alt"></i>
+            </span>
           </div>
         </div>
 
         <div class="field">
           <%= f.label 'Password_Confirmation', class:"label" %>
-          <div class="control">
+          <div class="control has-icons-left has-icons-right">
             <%= f.password_field :password_confirmation, class:"input" %>
+            <span class="icon is-small is-left">
+              <i class="fas fa-unlock-alt"></i>
+            </span>
           </div>
         </div>
 
-        <div class="field is-grouped mt-5">
+        <div class="field is-grouped is-grouped-centered mt-5">
           <div class="control">
             <%= f.submit 'Sign Up', class:"button is-link" %>
           </div>

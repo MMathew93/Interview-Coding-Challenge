@@ -1,14 +1,39 @@
-<h1>Edit Password</h1>
-<%= form_with model: Current.user, url: password_path do |f| %>
-  <p>
-    <%= f.label 'New Password:' %><br>
-    <%= f.password_field :password %>
-  </p>
-  <p>
-    <%= f.label 'New Password_Confirmation' %><br>
-    <%= f.password_field :password_confirmation %>
-  </p>
-  <p>
-    <%= f.submit 'Update' %>
-  </p>
-<% end %>
+<div class="tile is-ancestor mt-6">
+  <div class="tile"></div>
+  <div class="tile is-7">
+    <div class="tile is-parent">
+      <article class="tile is-child notification is-info">
+        <p class="title">Edit Password</p>
+        <%= form_with model: Current.user, url: password_path do |f| %>
+        <div class="field">
+          <%= f.label 'New Password:', class:"label" %>
+          <div class="control has-icons-left has-icons-right">
+            <%= f.password_field :password, id: 'password', class:"input" %>
+            <span class="icon is-small is-left">
+              <i class="fas fa-unlock-alt"></i>
+            </span>
+          </div>
+        </div>
+        <div class="field">
+          <%= f.label 'New Password_Confirmation:', class:"label" %>
+          <div class="control has-icons-left has-icons-right">
+            <%= f.password_field :password_confirmation, id: 'password', class:"input" %>
+            <span class="icon is-small is-left">
+              <i class="fas fa-unlock-alt"></i>
+            </span>
+          </div>
+        </div>
+        <div class="field is-grouped is-grouped-centered mt-5">
+          <div class="control">
+            <%= f.submit 'Update', class:"button is-link" %>
+          </div>
+          <div class="control">
+            <%= link_to 'Cancel', session_path, class:"button is-link is-light" %>
+          </div>
+        </div>
+        <% end %>
+      </article>
+    </div>
+  </div>
+  <div class="tile"></div>
+</div>

@@ -1,0 +1,24 @@
+<% if Current.user %>
+  <nav class="navbar is-link" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <p class="title has-text-white p-2 mb-0">
+        Note+
+      </p>
+      <a role="button" class="navbar-burger navbar-dropdown is-right" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+    <div id="navbarBasicExample" class="navbar-menu">
+      <div class="navbar-end">
+        <div class="navbar-item">
+          <div class="buttons">
+            <%= link_to 'Edit Password', edit_password_path(Current.user.id), class:"button is-light" %>
+            <%= button_to 'Logout', session_path, class:"button is-primary has-text-weight-semibold", method: :delete %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+<% end %>

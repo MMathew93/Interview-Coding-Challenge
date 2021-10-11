@@ -9,21 +9,21 @@ class PasswordResetsController < ApplicationController
       # send email
       PasswordMailer.with(user: @user).reset.deliver_later
     end
-    redirect_to root_path, notice: 'Please check your email to reset your password.'
+    redirect_to root_path
   end
 
   def edit
     # finds user with a valid token
     @user = User.find_signed!(params[:token], purpose: 'password_reset')
-  rescue ActiveSupport::MessageVerifier::InvalidSignature
-    redirect_to signin_path, alert: 'Your token has expired. Please try again.'
+    rescue ActiveSupport::MessageVerifier::InvalidSignature
+      redirect_to sessions_url, alert: 'Your token has expired. Please try again.'
   end
 
   def update
     # updates user's password
     @user = User.find_signed!(params[:token], purpose: 'password_reset')
     if @user.update(password_params)
-      redirect_to signin_path, notice: 'Your password was reset successfuly'
+      redirect_to sessions_url, notice: 'Your password was reset successfuly'
     else
       render :edit
     end

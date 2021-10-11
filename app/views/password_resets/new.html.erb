@@ -1,10 +1,30 @@
-<h1>Forgot Password?</h1>
-<%= form_with url: password_resets_path do |f| %>
-  <p>
-    <%= f.label 'Email:' %><br>
-    <%= f.text_field :email %>
-  </p>
-  <p>
-    <%= f.submit 'Reset Password' %>
-  </p>
-<% end %>
+<div class="tile is-ancestor mt-6">
+  <div class="tile"></div>
+  <div class="tile is-7">
+    <div class="tile is-parent">
+      <article class="tile is-child notification is-info">
+        <p class="title">Forgot Password?</p>
+        <%= form_with url: password_resets_path do |f| %>
+        <div class="field">
+          <%= f.label 'Email:', class:"label" %>
+          <div class="control has-icons-left has-icons-right">
+            <%= f.text_field :email, id: 'email', class:"input", placeholder:"Email input", value:"hello@" %>
+            <span class="icon is-small is-left">
+              <i class="fas fa-envelope"></i>
+            </span>
+          </div>
+        </div>
+        <div class="field is-grouped is-grouped-centered mt-5">
+          <div class="control">
+            <%= f.submit 'Reset Password', class:"button is-link" %>
+          </div>
+          <div class="control">
+            <%= link_to 'Cancel', sessions_path, class:"button is-link is-light" %>
+          </div>
+        </div>
+        <% end %>
+      </article>
+    </div>
+  </div>
+  <div class="tile"></div>
+</div>

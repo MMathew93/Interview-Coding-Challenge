@@ -31,9 +31,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 document.addEventListener('DOMContentLoaded', () => {
-  const $note_container = Array.prototype.slice.call(document.querySelectorAll('.note_container'), 0);
-  if ($note_container.length > 0) {
-    $note_container.forEach( el => {
+  const $eye_btn = Array.prototype.slice.call(document.querySelectorAll('.eye-btn'), 0);
+  if ($eye_btn.length > 0) {
+    $eye_btn.forEach( el => {
       el.addEventListener('click', () => {
 
         const target = el.nextElementSibling;

@@ -1,25 +1,25 @@
 <% if Current.user %>
 <%= render "sessions/header" %>
 <% if alert %>
-  <div class="alert notification is-danger">
-    <button class="delete"></button>
-    <%= alert %>
-  </div>
+<div class="alert notification is-danger">
+  <button class="delete"></button>
+  <%= alert %>
+</div>
 <% elsif notice %>
-  <div class="alert notification is-success">
-    <button class="delete"></button>
-    <%= notice %>
-  </div>
+<div class="alert notification is-success">
+  <button class="delete"></button>
+  <%= notice %>
+</div>
 <% end %>
-  <div class="is-size-5	has-text-right has-text-weight-semibold	pt-1 pr-6">
-      Welcome, <%= Current.user.username %>!
-  </div>
-  <div class="field is-grouped is-grouped-centered">
-    <p class="control">
-      <%= link_to '+New Note', new_note_path(user_id: Current.user.id), class:"button is-info has-text-weight-bold" %>
-    </p>
-    
-  </div>
+<div class="is-size-5	has-text-right has-text-weight-semibold	pt-1 pr-6">
+  Welcome, <%= Current.user.username %>!
+</div>
+<div class="field is-grouped is-grouped-centered">
+  <p class="control">
+    <%= link_to '+New Note', new_note_path(user_id: Current.user.id), class:"button is-info has-text-weight-bold" %>
+  </p>
+
+</div>
 <div class="container mt-5">
   <div class="columns is-multiline is-1">
     <% @notes.each do |note| %>
@@ -28,7 +28,27 @@
         <div class="tile is-ancestor">
           <div class="tile is-parent parent-note">
             <article class="tile is-child box note">
-              <p class="title is-4 note-title">
+              <button class="button is-small is-pulled-right is-clickable eye-btn">
+                <span class="icon is-small">
+                  <i class="far fa-eye"></i>
+                </span>
+              </button>
+              <div class="modal">
+                <div class="modal-background"></div>
+                <div class="modal-content">
+                  <article class="tile is-child box modal-note">
+                    <p class="title is-4 note-title">
+                      <%= note.title %>
+                    </p>
+                    <div class="content modal-note-content">
+                      <%= note.body %>
+                    </div>
+                  </article>
+                </div>
+                <button class="modal-close is-large"
+                  aria-label="close"></button>
+              </div>
+              <p class="title is-4 note-title mb-4">
                 <%= note.title.presence || truncate(note.body, length: 30) %>
               </p>
               <div class="content note-content">
@@ -53,20 +73,7 @@
           </div>
         </div>
       </div>
-      <div class="modal">
-        <div class="modal-background"></div>
-          <div class="modal-content">
-            <article class="tile is-child box modal-note">
-              <p class="title is-4 note-title">
-                <%= note.title.presence || truncate(note.body, length: 30) %>
-              </p>
-              <div class="content modal-note-content">
-                <%= note.body %>
-              </div>
-            </article>
-          </div>
-        <button class="modal-close is-large" aria-label="close"></button>
-      </div>
+
     </div>
     <% end %>
   </div>

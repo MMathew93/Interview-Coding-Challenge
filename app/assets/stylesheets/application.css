@@ -36,3 +36,7 @@
  .modal-note-content {
   overflow-wrap: break-word;
  }
+
+ .eye-btn {
+   border: none !important;
+ }
